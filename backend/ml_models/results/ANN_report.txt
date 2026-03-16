@@ -1,0 +1,12 @@
+Model: ANN
+Test Accuracy: 0.9944
+
+              precision    recall  f1-score   support
+
+      Normal       1.00      0.98      0.99        60
+ Fatty Liver       0.98      1.00      0.99        60
+   Cirrhosis       1.00      1.00      1.00        60
+
+    accuracy                           0.99       180
+   macro avg       0.99      0.99      0.99       180
+weighted avg       0.99      0.99      0.99       180

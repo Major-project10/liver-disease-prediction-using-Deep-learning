@@ -1,0 +1,12 @@
+Model: CNN
+Test Accuracy: 0.3556
+
+              precision    recall  f1-score   support
+
+      Normal       0.35      0.87      0.50        60
+ Fatty Liver       0.00      0.00      0.00        60
+   Cirrhosis       0.36      0.20      0.26        60
+
+    accuracy                           0.36       180
+   macro avg       0.24      0.36      0.25       180
+weighted avg       0.24      0.36      0.25       180

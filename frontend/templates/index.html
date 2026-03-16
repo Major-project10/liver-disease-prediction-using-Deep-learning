@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HepatoAI — Liver Disease Detection</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <span class="nav-logo">⬡</span>
+            <span class="nav-name">HepatoAI</span>
+        </div>
+        <div class="nav-links">
+            <a href="/" class="nav-link active">Home</a>
+            <a href="/predict" class="nav-link">Predict</a>
+            <a href="/history" class="nav-link">History</a>
+            <a href="/about" class="nav-link">About</a>
+        </div>
+        <div class="nav-badge">B.Tech Project 2026</div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg">
+            <div class="grid-overlay"></div>
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+            <div class="orb orb-3"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                Multi-Modal Deep Learning
+            </div>
+            <h1 class="hero-title">
+                AI-Powered<br>
+                <span class="gradient-text">Liver Disease</span><br>
+                Detection System
+            </h1>
+            <p class="hero-subtitle">
+                Integrates clinical lab values with ultrasound imaging using<br>
+                ANN + CNN fusion for accurate multi-class diagnosis.
+            </p>
+            <div class="hero-actions">
+                <a href="/predict" class="btn btn-primary">
+                    <span>Run Diagnosis</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+                <a href="/history" class="btn btn-outline">View History</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="model-diagram">
+                <div class="diagram-node node-input">
+                    <div class="node-icon">📋</div>
+                    <div class="node-label">Lab Values</div>
+                    <div class="node-sub">10 clinical features</div>
+                </div>
+                <div class="diagram-node node-input">
+                    <div class="node-icon">🩻</div>
+                    <div class="node-label">Ultrasound</div>
+                    <div class="node-sub">224×224 image</div>
+                </div>
+                <div class="diagram-arrow">
+                    <div class="arrow-line"></div>
+                    <div class="arrow-label">ANN</div>
+                </div>
+                <div class="diagram-arrow">
+                    <div class="arrow-line"></div>
+                    <div class="arrow-label">CNN (ResNet50)</div>
+                </div>
+                <div class="diagram-node node-fusion">
+                    <div class="node-icon">⚡</div>
+                    <div class="node-label">Feature Fusion</div>
+                    <div class="node-sub">Concatenation Layer</div>
+                </div>
+                <div class="diagram-node node-output">
+                    <div class="node-icon">🎯</div>
+                    <div class="node-label">Diagnosis</div>
+                    <div class="node-sub">3-class output</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-num">3</div>
+                <div class="stat-label">Disease Classes</div>
+                <div class="stat-sub">Normal • Fatty Liver • Cirrhosis</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-num">2</div>
+                <div class="stat-label">Neural Networks</div>
+                <div class="stat-sub">ANN + CNN Fusion</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-num">XAI</div>
+                <div class="stat-label">Explainable AI</div>
+                <div class="stat-sub">SHAP + Grad-CAM</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-num">94%</div>
+                <div class="stat-label">Fusion Accuracy</div>
+                <div class="stat-sub">On test dataset</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="section-header">
+            <h2>System Architecture</h2>
+            <p>A complete end-to-end multi-modal diagnostic pipeline</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon" style="background: rgba(52, 152, 219, 0.15); color: #3498db;">🧠</div>
+                <h3>Deep ANN Model</h3>
+                <p>4-layer deep neural network with BatchNorm and Dropout to process 10 clinical tabular features with high interpretability.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon" style="background: rgba(46, 204, 113, 0.15); color: #2ecc71;">👁️</div>
+                <h3>ResNet50 Transfer Learning</h3>
+                <p>Pretrained ResNet50 CNN fine-tuned on liver ultrasound images via two-phase transfer learning for robust feature extraction.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon" style="background: rgba(155, 89, 182, 0.15); color: #9b59b6;">⚡</div>
+                <h3>Multi-Modal Fusion</h3>
+                <p>Concatenation of 32-dim ANN features and 64-dim CNN features, processed by 3 dense fusion layers for final prediction.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon" style="background: rgba(231, 76, 60, 0.15); color: #e74c3c;">🔍</div>
+                <h3>SHAP Explanations</h3>
+                <p>SHAP values reveal which clinical features drove the ANN prediction, with force plots and bar charts for clinical clarity.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon" style="background: rgba(243, 156, 18, 0.15); color: #f39c12;">🌡️</div>
+                <h3>Grad-CAM Visualization</h3>
+                <p>Gradient-weighted Class Activation Maps highlight important regions in ultrasound images that informed the CNN decision.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon" style="background: rgba(26, 188, 156, 0.15); color: #1abc9c;">📊</div>
+                <h3>Patient Records & History</h3>
+                <p>SQLite database stores patient info, lab values, images, predictions and XAI plots for longitudinal monitoring.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Classes Section -->
+    <section class="classes-section">
+        <div class="section-header">
+            <h2>Diagnostic Classes</h2>
+            <p>The system classifies liver condition into three categories</p>
+        </div>
+        <div class="classes-grid">
+            <div class="class-card normal">
+                <div class="class-status"></div>
+                <div class="class-icon">✅</div>
+                <h3>Normal</h3>
+                <p>All liver function tests within normal range. No structural abnormalities in ultrasound image.</p>
+                <div class="class-ranges">
+                    <span>ALT: 7–55 U/L</span>
+                    <span>AST: 10–40 U/L</span>
+                    <span>Albumin: 3.5–5.0 g/dL</span>
+                </div>
+            </div>
+            <div class="class-card fatty">
+                <div class="class-status"></div>
+                <div class="class-icon">⚠️</div>
+                <h3>Fatty Liver</h3>
+                <p>Elevated ALT/AST with increased echogenicity on ultrasound. Moderate risk requiring lifestyle changes.</p>
+                <div class="class-ranges">
+                    <span>ALT: 40–150 U/L</span>
+                    <span>AST: 35–120 U/L</span>
+                    <span>Bilirubin: 0.8–3.0 mg/dL</span>
+                </div>
+            </div>
+            <div class="class-card cirrhosis">
+                <div class="class-status"></div>
+                <div class="class-icon">🚨</div>
+                <h3>Cirrhosis</h3>
+                <p>Severely elevated enzymes, low albumin, high bilirubin, and irregular liver surface on imaging.</p>
+                <div class="class-ranges">
+                    <span>ALP: >200 U/L</span>
+                    <span>Albumin: &lt;3.0 g/dL</span>
+                    <span>Bilirubin: >2.5 mg/dL</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Ready to Analyze?</h2>
+            <p>Enter patient lab values and upload an ultrasound image to get an AI-powered diagnosis with full explainability.</p>
+            <a href="/predict" class="btn btn-primary btn-lg">
+                Start Diagnosis
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span class="nav-logo">⬡</span>
+                <span>HepatoAI</span>
+            </div>
+            <p class="footer-text">B.Tech Final Year Project — AI & Medical Imaging</p>
+            <p class="footer-disclaimer">
+                ⚕️ <strong>Medical Disclaimer:</strong> This system is for academic research purposes only and should not replace professional medical diagnosis.
+            </p>
+        </div>
+    </footer>
+
+    <script src="/static/js/main.js"></script>
+</body>
+</html>

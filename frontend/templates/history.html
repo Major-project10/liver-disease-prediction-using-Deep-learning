@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History — HepatoAI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/history.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <span class="nav-logo">⬡</span>
+            <span class="nav-name">HepatoAI</span>
+        </div>
+        <div class="nav-links">
+            <a href="/" class="nav-link">Home</a>
+            <a href="/predict" class="nav-link">Predict</a>
+            <a href="/history" class="nav-link active">History</a>
+            <a href="/about" class="nav-link">About</a>
+        </div>
+        <div class="nav-badge">B.Tech Project 2026</div>
+    </nav>
+
+    <div class="page-container">
+        <div class="page-header">
+            <h1>Prediction History</h1>
+            <p>All patient predictions stored in the database with full diagnostic records.</p>
+        </div>
+
+        <!-- Stats Bar -->
+        <div class="stats-bar" id="statsBar">
+            <div class="stat-item">
+                <div class="stat-num" id="totalPatients">—</div>
+                <div class="stat-label">Patients</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num" id="totalPredictions">—</div>
+                <div class="stat-label">Predictions</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num" id="normalCount">—</div>
+                <div class="stat-label" style="color:#2ecc71">Normal</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num" id="fattyCount">—</div>
+                <div class="stat-label" style="color:#f39c12">Fatty Liver</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num" id="cirrhosisCount">—</div>
+                <div class="stat-label" style="color:#e74c3c">Cirrhosis</div>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters-bar">
+            <div class="filter-group">
+                <input type="text" class="filter-input" id="searchInput" placeholder="🔍  Search patient name...">
+            </div>
+            <div class="filter-group">
+                <select class="filter-input" id="classFilter">
+                    <option value="">All Classes</option>
+                    <option value="Normal">✅ Normal</option>
+                    <option value="Fatty Liver">⚠️ Fatty Liver</option>
+                    <option value="Cirrhosis">🚨 Cirrhosis</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <select class="filter-input" id="modelFilter">
+                    <option value="">All Models</option>
+                    <option value="ann">ANN (Tabular)</option>
+                    <option value="cnn">CNN (Image)</option>
+                    <option value="fusion">Fusion</option>
+                </select>
+            </div>
+            <button class="filter-btn" onclick="loadHistory()">Apply Filters</button>
+        </div>
+
+        <!-- Table -->
+        <div class="table-container">
+            <div class="table-loading" id="tableLoading">
+                <div class="loader"></div>
+                <p>Loading records...</p>
+            </div>
+            <table class="history-table" id="historyTable" style="display:none">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Patient</th>
+                        <th>Age/Gender</th>
+                        <th>Diagnosis</th>
+                        <th>Confidence</th>
+                        <th>Model</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="historyBody"></tbody>
+            </table>
+            <div class="empty-state" id="emptyState" style="display:none">
+                <div class="empty-icon">📋</div>
+                <h3>No records found</h3>
+                <p>Make a prediction to see it here.</p>
+                <a href="/predict" class="btn btn-primary">Make First Prediction</a>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination" id="pagination"></div>
+    </div>
+
+    <!-- Detail Modal -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
+        <div class="modal" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h2>Prediction Details</h2>
+                <button class="modal-close" onclick="closeModal()">✕</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Filled dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/history.js"></script>
+</body>
+</html>

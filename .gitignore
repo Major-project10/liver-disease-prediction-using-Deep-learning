@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+venv/
+env/
+.venv/
+
+# Flask
+instance/
+*.db
+*.sqlite3
+
+# ML Models (large files)
+backend/ml_models/saved_models/*.keras
+backend/ml_models/saved_models/*.pkl
+backend/ml_models/results/*.png
+
+# Uploads
+backend/uploads/*
+!backend/uploads/.gitkeep
+backend/static/explanations/*
+!backend/static/explanations/.gitkeep
+
+# Environment
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data (may be large)
+data/raw/
+data/processed/

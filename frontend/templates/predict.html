@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predict — HepatoAI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/predict.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <span class="nav-logo">⬡</span>
+            <span class="nav-name">HepatoAI</span>
+        </div>
+        <div class="nav-links">
+            <a href="/" class="nav-link">Home</a>
+            <a href="/predict" class="nav-link active">Predict</a>
+            <a href="/history" class="nav-link">History</a>
+            <a href="/about" class="nav-link">About</a>
+        </div>
+        <div class="nav-badge">B.Tech Project 2026</div>
+    </nav>
+
+    <div class="page-container">
+        <div class="page-header">
+            <h1>Liver Disease Diagnosis</h1>
+            <p>Enter patient details, lab values, and optionally upload an ultrasound image for AI-powered multi-modal analysis.</p>
+        </div>
+
+        <!-- Main Form Layout -->
+        <div class="predict-layout">
+
+            <!-- LEFT: Input Form -->
+            <div class="input-panel">
+
+                <!-- Patient Info -->
+                <div class="form-section">
+                    <div class="form-section-header">
+                        <span class="section-num">01</span>
+                        <h2>Patient Information</h2>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="patient_name">Patient Name</label>
+                            <input type="text" id="patient_name" class="form-input" placeholder="e.g. John Doe">
+                        </div>
+                        <div class="form-group">
+                            <label for="age">Age <span class="unit">(years)</span></label>
+                            <input type="number" id="age" class="form-input" placeholder="e.g. 45" min="1" max="120" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="gender">Gender</label>
+                            <select id="gender" class="form-input" required>
+                                <option value="">Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Liver Enzymes -->
+                <div class="form-section">
+                    <div class="form-section-header">
+                        <span class="section-num">02</span>
+                        <h2>Liver Enzymes</h2>
+                    </div>
+                    <div class="form-grid form-grid-3">
+                        <div class="form-group">
+                            <label for="alt">
+                                ALT
+                                <span class="unit">U/L</span>
+                                <span class="ref">Normal: 7–55</span>
+                            </label>
+                            <input type="number" id="alt" class="form-input" placeholder="e.g. 35" step="0.1" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="ast">
+                                AST
+                                <span class="unit">U/L</span>
+                                <span class="ref">Normal: 10–40</span>
+                            </label>
+                            <input type="number" id="ast" class="form-input" placeholder="e.g. 28" step="0.1" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="alp">
+                                ALP
+                                <span class="unit">U/L</span>
+                                <span class="ref">Normal: 44–147</span>
+                            </label>
+                            <input type="number" id="alp" class="form-input" placeholder="e.g. 90" step="0.1" min="0" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bilirubin -->
+                <div class="form-section">
+                    <div class="form-section-header">
+                        <span class="section-num">03</span>
+                        <h2>Bilirubin Levels</h2>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="bilirubin_total">
+                                Total Bilirubin
+                                <span class="unit">mg/dL</span>
+                                <span class="ref">Normal: 0.2–1.2</span>
+                            </label>
+                            <input type="number" id="bilirubin_total" class="form-input" placeholder="e.g. 0.9" step="0.01" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="bilirubin_direct">
+                                Direct Bilirubin
+                                <span class="unit">mg/dL</span>
+                                <span class="ref">Normal: 0.0–0.3</span>
+                            </label>
+                            <input type="number" id="bilirubin_direct" class="form-input" placeholder="e.g. 0.2" step="0.01" min="0" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Protein Studies -->
+                <div class="form-section">
+                    <div class="form-section-header">
+                        <span class="section-num">04</span>
+                        <h2>Protein Studies</h2>
+                    </div>
+                    <div class="form-grid form-grid-3">
+                        <div class="form-group">
+                            <label for="albumin">
+                                Albumin
+                                <span class="unit">g/dL</span>
+                                <span class="ref">Normal: 3.5–5.0</span>
+                            </label>
+                            <input type="number" id="albumin" class="form-input" placeholder="e.g. 4.2" step="0.01" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="total_protein">
+                                Total Protein
+                                <span class="unit">g/dL</span>
+                                <span class="ref">Normal: 6.0–8.3</span>
+                            </label>
+                            <input type="number" id="total_protein" class="form-input" placeholder="e.g. 7.0" step="0.01" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="ag_ratio">
+                                A/G Ratio
+                                <span class="unit">ratio</span>
+                                <span class="ref">Normal: 1.0–2.5</span>
+                            </label>
+                            <input type="number" id="ag_ratio" class="form-input" placeholder="e.g. 1.4" step="0.01" min="0" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Image Upload -->
+                <div class="form-section">
+                    <div class="form-section-header">
+                        <span class="section-num">05</span>
+                        <h2>Ultrasound Image <span class="optional-tag">Optional</span></h2>
+                    </div>
+                    <div class="upload-zone" id="uploadZone">
+                        <input type="file" id="imageFile" accept="image/*" style="display:none">
+                        <div class="upload-content" id="uploadContent">
+                            <div class="upload-icon">🩻</div>
+                            <p class="upload-text">Drop ultrasound image here or <span class="upload-link">browse</span></p>
+                            <p class="upload-hint">PNG, JPG, JPEG up to 16MB</p>
+                        </div>
+                        <div class="upload-preview" id="uploadPreview" style="display:none">
+                            <img id="previewImg" src="" alt="Preview">
+                            <button class="remove-image" id="removeImage">✕ Remove</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Fill -->
+                <div class="quick-fill-section">
+                    <p class="quick-fill-label">Quick fill with sample data:</p>
+                    <div class="quick-fill-buttons">
+                        <button class="qf-btn" onclick="fillSampleData('normal')">✅ Normal</button>
+                        <button class="qf-btn" onclick="fillSampleData('fatty')">⚠️ Fatty Liver</button>
+                        <button class="qf-btn" onclick="fillSampleData('cirrhosis')">🚨 Cirrhosis</button>
+                    </div>
+                </div>
+
+                <!-- Submit -->
+                <button class="btn-predict" id="predictBtn" onclick="runPrediction()">
+                    <div class="predict-btn-content">
+                        <span class="predict-icon">🔬</span>
+                        <span>Analyze & Diagnose</span>
+                    </div>
+                    <div class="loading-content" style="display:none">
+                        <div class="spinner"></div>
+                        <span>Processing...</span>
+                    </div>
+                </button>
+            </div>
+
+            <!-- RIGHT: Results Panel -->
+            <div class="results-panel" id="resultsPanel">
+                <!-- Initial State -->
+                <div class="results-empty" id="resultsEmpty">
+                    <div class="empty-icon">🔬</div>
+                    <h3>Results will appear here</h3>
+                    <p>Fill in the patient data on the left and click "Analyze & Diagnose" to get AI-powered diagnosis with explanations.</p>
+                </div>
+
+                <!-- Results Content (hidden until prediction) -->
+                <div class="results-content" id="resultsContent" style="display:none">
+
+                    <!-- Prediction Badge -->
+                    <div class="result-header">
+                        <div class="result-class-badge" id="resultBadge">
+                            <span class="result-class-icon" id="resultIcon">🎯</span>
+                            <div>
+                                <div class="result-class-name" id="resultClass">—</div>
+                                <div class="result-confidence" id="resultConfidence">—</div>
+                            </div>
+                        </div>
+                        <div class="result-risk-badge" id="resultRisk">—</div>
+                    </div>
+
+                    <!-- Probability Bars -->
+                    <div class="prob-section">
+                        <h3 class="section-title">Class Probabilities</h3>
+                        <div class="prob-bars">
+                            <div class="prob-item">
+                                <div class="prob-label">
+                                    <span>✅ Normal</span>
+                                    <span id="probNormal">—</span>
+                                </div>
+                                <div class="prob-bar-track">
+                                    <div class="prob-bar normal" id="barNormal" style="width:0%"></div>
+                                </div>
+                            </div>
+                            <div class="prob-item">
+                                <div class="prob-label">
+                                    <span>⚠️ Fatty Liver</span>
+                                    <span id="probFatty">—</span>
+                                </div>
+                                <div class="prob-bar-track">
+                                    <div class="prob-bar fatty" id="barFatty" style="width:0%"></div>
+                                </div>
+                            </div>
+                            <div class="prob-item">
+                                <div class="prob-label">
+                                    <span>🚨 Cirrhosis</span>
+                                    <span id="probCirrhosis">—</span>
+                                </div>
+                                <div class="prob-bar-track">
+                                    <div class="prob-bar cirrhosis" id="barCirrhosis" style="width:0%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Model Info -->
+                    <div class="model-info-section">
+                        <div class="model-info-item">
+                            <span class="mi-label">Model</span>
+                            <span class="mi-value" id="modelType">—</span>
+                        </div>
+                        <div class="model-info-item">
+                            <span class="mi-label">Patient ID</span>
+                            <span class="mi-value" id="patientId">—</span>
+                        </div>
+                        <div class="model-info-item">
+                            <span class="mi-label">Record ID</span>
+                            <span class="mi-value" id="recordId">—</span>
+                        </div>
+                    </div>
+
+                    <!-- Top Contributing Features -->
+                    <div class="features-section" id="shapSection" style="display:none">
+                        <h3 class="section-title">🔍 SHAP Feature Importance</h3>
+                        <div class="top-features" id="topFeatures"></div>
+                        <div class="explanation-plot" id="shapPlot" style="display:none">
+                            <img id="shapImg" src="" alt="SHAP Plot">
+                        </div>
+                    </div>
+
+                    <!-- Grad-CAM -->
+                    <div class="gradcam-section" id="gradcamSection" style="display:none">
+                        <h3 class="section-title">🌡️ Grad-CAM Visualization</h3>
+                        <div class="explanation-plot">
+                            <img id="gradcamImg" src="" alt="Grad-CAM">
+                        </div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="result-actions">
+                        <button class="btn-action" onclick="printResult()">🖨️ Print Report</button>
+                        <button class="btn-action" onclick="newPrediction()">🔄 New Analysis</button>
+                    </div>
+                </div>
+
+                <!-- Error State -->
+                <div class="results-error" id="resultsError" style="display:none">
+                    <div class="error-icon">⚠️</div>
+                    <h3>Analysis Failed</h3>
+                    <p id="errorMessage">An error occurred during prediction.</p>
+                    <div class="error-hint" id="errorHint"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/predict.js"></script>
+</body>
+</html>

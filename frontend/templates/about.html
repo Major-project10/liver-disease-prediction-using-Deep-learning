@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About — HepatoAI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <style>
+        .about-container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+        .about-section { margin-bottom: 3rem; }
+        .about-section h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--accent-cyan); }
+        .about-section p { color: var(--text-secondary); line-height: 1.8; margin-bottom: 0.75rem; }
+        .tech-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+        .tech-card { padding: 1rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); text-align: center; }
+        .tech-card .tech-name { font-weight: 700; margin-bottom: 4px; }
+        .tech-card .tech-role { font-size: 0.78rem; color: var(--text-muted); }
+        .arch-table { width: 100%; border-collapse: collapse; }
+        .arch-table th, .arch-table td { padding: 10px 16px; border: 1px solid var(--border); text-align: left; }
+        .arch-table th { background: var(--bg-secondary); font-size: 0.82rem; text-transform: uppercase; color: var(--text-muted); }
+        .arch-table td { font-size: 0.88rem; font-family: var(--font-mono); color: var(--text-secondary); }
+        .disclaimer-box { background: rgba(239,68,68,0.05); border: 1px solid rgba(239,68,68,0.2); border-radius: var(--radius-md); padding: 1.2rem; margin-top: 1rem; }
+        .disclaimer-box p { color: var(--text-secondary); font-size: 0.88rem; margin: 0; }
+        @media (max-width: 640px) { .tech-grid { grid-template-columns: 1fr 1fr; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand"><span class="nav-logo">⬡</span><span class="nav-name">HepatoAI</span></div>
+        <div class="nav-links">
+            <a href="/" class="nav-link">Home</a>
+            <a href="/predict" class="nav-link">Predict</a>
+            <a href="/history" class="nav-link">History</a>
+            <a href="/about" class="nav-link active">About</a>
+        </div>
+        <div class="nav-badge">B.Tech Project 2026</div>
+    </nav>
+
+    <div class="about-container">
+        <div class="page-header">
+            <h1>About HepatoAI</h1>
+            <p>A final-year B.Tech project in AI-assisted liver disease detection</p>
+        </div>
+
+        <div class="about-section">
+            <h2>Project Overview</h2>
+            <p>HepatoAI is a complete end-to-end Multi-Modal Deep Learning system designed to assist in early liver disease detection. It fuses two distinct data modalities — clinical tabular data (lab results) and liver ultrasound images — using a dual neural network architecture to improve diagnostic accuracy beyond single-modality approaches.</p>
+            <p>The system classifies patients into one of three categories: <strong>Normal</strong>, <strong>Fatty Liver</strong>, or <strong>Cirrhosis</strong>, with accompanying probability scores and AI-generated explanations using SHAP and Grad-CAM.</p>
+        </div>
+
+        <div class="about-section">
+            <h2>Neural Network Architecture</h2>
+            <table class="arch-table">
+                <thead><tr><th>Component</th><th>Architecture</th><th>Input</th><th>Output</th></tr></thead>
+                <tbody>
+                    <tr><td>ANN (Tabular)</td><td>Dense(256)→BN→Drop→Dense(128)→BN→Drop→Dense(64)→Dense(32)</td><td>10 clinical features</td><td>32-dim features</td></tr>
+                    <tr><td>CNN (Image)</td><td>ResNet50(pretrained) → GAP → Dense(256) → Dense(64)</td><td>224×224×3 image</td><td>64-dim features</td></tr>
+                    <tr><td>Fusion</td><td>Concat(96) → Dense(128) → Dense(64) → Dense(3)</td><td>ANN + CNN features</td><td>3-class softmax</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="about-section">
+            <h2>Technology Stack</h2>
+            <div class="tech-grid">
+                <div class="tech-card"><div class="tech-name">TensorFlow / Keras</div><div class="tech-role">ANN + CNN Models</div></div>
+                <div class="tech-card"><div class="tech-name">ResNet50</div><div class="tech-role">Transfer Learning</div></div>
+                <div class="tech-card"><div class="tech-name">SHAP</div><div class="tech-role">Tabular XAI</div></div>
+                <div class="tech-card"><div class="tech-name">Grad-CAM</div><div class="tech-role">Image XAI</div></div>
+                <div class="tech-card"><div class="tech-name">Flask</div><div class="tech-role">REST API Backend</div></div>
+                <div class="tech-card"><div class="tech-name">SQLite</div><div class="tech-role">Patient Database</div></div>
+                <div class="tech-card"><div class="tech-name">OpenCV</div><div class="tech-role">Image Processing</div></div>
+                <div class="tech-card"><div class="tech-name">Scikit-learn</div><div class="tech-role">Preprocessing</div></div>
+                <div class="tech-card"><div class="tech-name">HTML/CSS/JS</div><div class="tech-role">Frontend</div></div>
+            </div>
+        </div>
+
+        <div class="about-section">
+            <h2>Explainable AI (XAI)</h2>
+            <p><strong>SHAP (SHapley Additive exPlanations):</strong> Used with the ANN model to explain which clinical features most influenced the prediction. SHAP values are computed using DeepExplainer/GradientExplainer and displayed as force plots and bar charts.</p>
+            <p><strong>Grad-CAM (Gradient-weighted Class Activation Maps):</strong> Applied to the CNN model to generate heatmaps showing which regions of the ultrasound image were most important for classification. These heatmaps are overlaid on the original image for visual interpretation.</p>
+        </div>
+
+        <div class="about-section">
+            <h2>Medical Disclaimer</h2>
+            <div class="disclaimer-box">
+                <p>⚕️ This system is developed purely for <strong>academic and research purposes</strong> as a B.Tech final-year project. It is NOT a certified medical device and should NOT be used as a substitute for professional medical diagnosis, treatment, or advice. All predictions are for demonstration purposes only. Always consult a qualified hepatologist or gastroenterologist for actual medical decisions.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand"><span class="nav-logo">⬡</span><span>HepatoAI</span></div>
+            <p class="footer-text">B.Tech Final Year Project — AI & Medical Imaging</p>
+        </div>
+    </footer>
+</body>
+</html>

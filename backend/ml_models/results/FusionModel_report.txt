@@ -1,0 +1,12 @@
+Model: FusionModel
+Test Accuracy: 0.9889
+
+              precision    recall  f1-score   support
+
+      Normal       1.00      0.98      0.99        60
+ Fatty Liver       0.98      0.98      0.98        60
+   Cirrhosis       0.98      1.00      0.99        60
+
+    accuracy                           0.99       180
+   macro avg       0.99      0.99      0.99       180
+weighted avg       0.99      0.99      0.99       180

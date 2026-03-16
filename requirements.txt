@@ -1,0 +1,39 @@
+# ============================================================
+# Liver Disease Detection - Requirements
+# ============================================================
+
+# Web Framework
+Flask==3.0.3
+Flask-CORS==4.0.1
+Flask-SQLAlchemy==3.1.1
+Werkzeug==3.0.3
+
+# Machine Learning & Deep Learning
+tensorflow==2.16.1
+keras==3.3.3
+scikit-learn==1.5.1
+numpy==1.26.4
+pandas==2.2.2
+joblib==1.4.2
+
+# Image Processing
+opencv-python-headless==4.10.0.84
+Pillow==10.4.0
+matplotlib==3.8.4
+seaborn==0.13.2
+
+# Explainable AI
+shap==0.45.1
+tf-keras-vis==0.8.5
+
+# Database
+SQLAlchemy==2.0.31
+
+# Utilities
+python-dotenv==1.0.1
+gunicorn==22.0.0
+requests==2.32.3
+
+# Data processing
+scipy==1.13.1
+imbalanced-learn==0.12.3
